@@ -72,17 +72,29 @@ These profiles describe differences within the five-brand analytical sample rath
 
 ## Visualizations
 
-**Consumer experience positioning** — Relative aspect-associated ratings across four dimensions (Core Experience, Usability, Ownership, and Value), measured against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.
+### 1. Aspect Rating Associations
+
+Which consumer-experience aspects are associated with ratings? The chart shows associations between aspect mentions and overall review ratings from the regression analysis. Mentioning an aspect does not indicate positive or negative sentiment about that aspect, and the coefficients do not establish causal effects.
+
+![Aspect rating associations](outputs/figures/04_aspect_rating_associations.png)
+
+### 2. Consumer Experience Positioning 
+
+How do the brands differ across consumer-experience dimensions? Relative aspect-associated ratings are compared across four dimensions (Core Experience, Usability, Ownership, and Value) against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.
 
 ![Consumer experience positioning](outputs/figures/05_consumer_experience_positioning_relative_to_brandav.png)
 
-**Display technology mix** — Distribution of extracted display technology categories across the five brands. Categories are inferred from product metadata and may contain classification errors or unknown values.
+### 3. Review-Weighted vs Product-Weighted Ratings
 
-![Display technology mix](outputs/figures/05_display_technology_mix_by_brand.png)
-
-**Rating aggregation** — Comparison of two brand-rating aggregation methods, illustrating the influence of unequal review volume across products.
+Why does the aggregation method matter for brand comparisons? Review-weighted ratings give equal weight to each review, whereas product-weighted ratings give equal weight to each product's mean rating. Sony, for example, has a review-weighted average of 3.97 stars versus a product-weighted average of 4.16 stars. Neither measure is universally preferable; they answer different questions.
 
 ![Rating aggregation comparison](outputs/figures/03_weighted_rating_comparison.png)
+
+### 4. Display Technology Mix 
+
+How do product portfolios differ across brands? The chart shows the distribution of extracted display technology categories. Categories are inferred from product metadata and may contain classification errors or unknown values; portfolio composition alone does not establish an effect on ratings.
+
+![Display technology mix](outputs/figures/05_display_technology_mix_by_brand.png)
 
 Additional figures and result tables are available in [`outputs/`](outputs/).
 
