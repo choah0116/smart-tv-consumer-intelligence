@@ -55,7 +55,7 @@ Picture Quality is the most frequently mentioned consumer experience aspect, app
 
 Ease of Use & Setup is positively associated with ratings in the regression analysis, while reviews mentioning Reliability and Customer Support show strong negative associations.
 
-These findings suggest that consumer ratings reflect both the product experience and problems encountered during ownership.
+These findings highlight associations between consumer ratings and both everyday product experiences and ownership-related issues.
 
 Importantly, an aspect mention indicates that a topic was discussed. It does not directly measure whether the reviewer expressed positive or negative sentiment about that specific aspect.
 
@@ -72,7 +72,7 @@ These profiles describe differences within the five-brand analytical sample rath
 
 ## Visualizations
 
-**Consumer experience positioning** — Relative aspect-associated ratings across four consumer experience dimensions, measured against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.
+**Consumer experience positioning** — Relative aspect-associated ratings across four dimensions (Core Experience, Usability, Ownership, and Value), measured against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.
 
 ![Consumer experience positioning](outputs/figures/05_consumer_experience_positioning_relative_to_brandav.png)
 
@@ -123,6 +123,11 @@ The Parquet datasets are excluded from GitHub because of their size. The noteboo
 Run the notebooks from the `notebooks/` directory because the relative data and output paths are defined from that working directory.
 
 1. Clone this repository and install the dependencies listed in `requirements.txt`.
+    ```
+    git clone https://github.com/choah0116/smart-tv-consumer-intelligence.git
+    cd smart-tv-consumer-intelligence
+    python -m pip install -r requirements.txt
+    ```
 2. Obtain the Amazon Reviews 2023 Electronics dataset and run `01_data_collection.ipynb` to generate the raw product and review Parquet files.
 3. Run `02_data_cleaning.ipynb` to construct the final analytical sample.
 4. Run `03_exploratory_analysis.ipynb`, followed by `04_consumer_review_analysis.ipynb` and `05_competitive_positioning.ipynb`.
