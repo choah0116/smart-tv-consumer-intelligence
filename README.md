@@ -1,57 +1,31 @@
 # Smart TV Consumer Intelligence & Competitive Positioning
 
-### Analyzing 111K Amazon consumer reviews and 1,097 Smart TV products
+**Analyzing 111,191 Amazon reviews and 1,097 Smart TV products across Samsung, LG, Sony, TCL, and Hisense.**
 
-## Project Overview
+## Overview
 
-The Smart TV market is highly competitive, with brands differentiating through
-display technology, product features, usability, and the overall ownership
-experience. This project analyzes Amazon product metadata and consumer reviews
-to examine how these differences are reflected in consumer satisfaction and
-brand positioning.
+**Research question:** What product attributes are associated with consumer satisfaction, and how are major Smart TV brands positioned relative to competitors?
 
-The analysis focuses on five major Smart TV brands — **Samsung, LG, Sony, TCL,
-and Hisense** — using a final analytical sample of **1,097 products and 111,191
-consumer reviews**.
-
-### Research Question
-
-> **What product attributes are associated with consumer satisfaction in the
-> Smart TV market, and how are major brands positioned relative to competitors?**
-
-## Analysis Pipeline
-
-The project follows an end-to-end consumer intelligence workflow:
-
-1. **Data Collection** — Extract Smart TV product metadata and consumer reviews
-   from the Amazon Reviews 2023 dataset.
-2. **Data Cleaning** — Define the analytical Smart TV sample, clean review text,
-   and extract product attributes such as screen size, resolution, and display
-   technology.
-3. **Exploratory Analysis** — Examine market composition, ratings, review
-   concentration, and product-level differences.
-4. **Consumer Review Analysis** — Analyze review language to identify consumer
-   experience themes and their associations with satisfaction.
-5. **Competitive Positioning** — Integrate product portfolio characteristics
-   with consumer experience signals to compare the five brands.
-   ---
+This project combines product specifications and consumer review signals to examine rating patterns and compare brand profiles. It describes associations, not causal effects or current market performance.
 
 ## Dataset
 
-**Source:** Amazon Reviews 2023 — Electronics dataset (McAuley Lab)
+- **Source:** McAuley Lab's Amazon Reviews 2023, Electronics category
+- **Period:** 2015–2023
+- **Sample:** 3,027 products and 218,226 reviews initially; **1,097 products and 111,191 reviews** after cleaning
+- **Scope:** Samsung, LG, Sony, TCL, and Hisense
 
-The analysis focuses on five Smart TV brands: Samsung, LG, Sony, TCL, and Hisense.
+Price was excluded as a primary analytical variable because valid price data covered only 9.25% of initial products; perceived value was examined through reviews instead.
 
-| Dataset stage           | Products | Reviews |
-| ----------------------- | -------: | ------: |
-| Initial TV dataset      |    3,027 | 218,226 |
-| Final analytical sample |    1,097 | 111,191 |
+## Analysis Pipeline
 
-**Analytical period:** 2015–2023.
-
-The final sample was constructed by identifying Smart TV-related terminology in product metadata, extracting model years, restricting the analytical period, and matching reviews to the selected products. Empty review texts and exact duplicate reviews were removed.
-
-Because valid price information was available for only 9.25% of the initial products, price was not used as a primary analytical variable. Instead, consumer perceptions of value were examined through review text.
+| Notebook | Analysis |
+| --- | --- |
+| [01 · Data Collection](notebooks/01_data_collection.ipynb) | Select TV products and match reviews from Amazon data. |
+| [02 · Data Cleaning](notebooks/02_data_cleaning.ipynb) | Define the analytical sample, clean reviews, and extract product attributes. |
+| [03 · Exploratory Analysis](notebooks/03_exploratory_analysis.ipynb) | Compare ratings, specifications, and review concentration. |
+| [04 · Consumer Review Analysis](notebooks/04_consumer_review_analysis.ipynb) | Identify eight review aspects and examine associations with ratings using OLS with HC3 robust standard errors. |
+| [05 · Competitive Positioning](notebooks/05_competitive_positioning.ipynb) | Compare product portfolios and relative consumer-experience profiles across five brands. |
 
 ## Key Findings
 
@@ -95,59 +69,28 @@ TCL shows relatively positive results in usability and value, while Samsung and 
 
 These profiles describe differences within the five-brand analytical sample rather than overall brand quality or current market performance.
 
----
 
-## Key Visualizations
+## Visualizations
 
-### Consumer Experience Positioning
+**Consumer experience positioning** — Relative aspect-associated ratings across four consumer experience dimensions, measured against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.
 
-![Consumer Experience Positioning](outputs/figures/05_consumer_experience_positioning_relative_to_brandav.png)
+![Consumer experience positioning](outputs/figures/05_consumer_experience_positioning_relative_to_brandav.png)
 
-*Relative aspect-associated ratings across four consumer experience dimensions, measured against the five-brand average. Positive and negative values represent differences from the sample average, not absolute product-quality scores.*
+**Display technology mix** — Distribution of extracted display technology categories across the five brands. Categories are inferred from product metadata and may contain classification errors or unknown values.
 
-### Display Technology Mix by Brand
+![Display technology mix](outputs/figures/05_display_technology_mix_by_brand.png)
 
-![Display Technology Mix](outputs/figures/05_display_technology_mix_by_brand.png)
+**Rating aggregation** — Comparison of two brand-rating aggregation methods, illustrating the influence of unequal review volume across products.
 
-*Distribution of extracted display technology categories across the five brands. Categories are inferred from product metadata and may contain classification errors or unknown values.*
+![Rating aggregation comparison](outputs/figures/03_weighted_rating_comparison.png)
 
-### Review-Weighted vs. Product-Weighted Ratings
-
-![Rating Comparison](outputs/figures/03_weighted_rating_comparison.png)
-
-*Comparison of two brand-rating aggregation methods, illustrating the influence of unequal review volume across products.*
-
----
-
-## Methodology
-
-The project uses an end-to-end consumer intelligence workflow.
-
-**Data collection and cleaning:** Amazon product metadata and reviews were processed, filtered to the Smart TV category, and restricted to the analytical period. Product attributes were extracted using rule-based text processing.
-
-**Exploratory analysis:** Brand representation, rating distributions, review concentration, and product specification associations were examined.
-
-**Consumer review analysis:** Keyword-based aspect identification was used to detect mentions of Picture Quality, Sound, Ease of Use & Setup, Smart Features & Apps, Remote, Reliability, Customer Support, and Value.
-
-Aspect mention rates and associated review ratings were calculated. An OLS regression with HC3 robust standard errors was used to examine associations between aspect mentions and overall review ratings.
-
-**Competitive positioning:** Product portfolio composition and consumer experience measures were integrated to construct descriptive brand profiles across Core Product, Usability & Smart, Ownership, and Value dimensions.
-
----
+Additional figures and result tables are available in [`outputs/`](outputs/).
 
 ## Limitations
 
-* **Historical data:** The analysis covers 2015–2023 and should not be interpreted as a description of the current Smart TV market.
-* **Selection bias:** Amazon reviewers and the selected products may not represent all Smart TV buyers or products.
-* **Review concentration:** Highly reviewed products can disproportionately influence review-weighted results.
-* **Keyword-based analysis:** Aspect mentions do not directly measure aspect-specific sentiment. Keyword matching may miss relevant expressions or produce false positives.
-* **Product attribute extraction:** Specifications inferred from product titles and metadata may contain errors or missing values.
-* **Observational analysis:** Reported relationships are associations, not causal effects.
-* **Price limitations:** Incomplete price information prevents a comprehensive price-based competitive analysis.
+Amazon reviewers and selected products may not represent the wider market. The data cover **2015–2023**, not today's market. Keyword-based aspect detection identifies *mentions*, not aspect-specific sentiment, and metadata-derived specifications may contain errors. Review concentration affects aggregate ratings, price coverage is limited, and all reported relationships are **associations rather than causal effects**.
 
----
-
-## Repository Structure
+## Repository Structure & Reproduction
 
 ```text
 smart-tv-consumer-intelligence/
@@ -169,6 +112,12 @@ smart-tv-consumer-intelligence/
 
 The Parquet datasets are excluded from GitHub because of their size. The notebooks document the data preparation and analysis workflow.
 
+- [`notebooks/`](notebooks/) — Five notebooks in execution order
+- [`outputs/figures/`](outputs/figures/) — Visualizations
+- [`outputs/tables/`](outputs/tables/) — Result CSVs
+- [`data/README.md`](data/README.md) — Data information; large Parquet files are excluded from GitHub
+- [`requirements.txt`](requirements.txt) — Python dependencies
+
 ## How to Run
 
 Run the notebooks from the `notebooks/` directory because the relative data and output paths are defined from that working directory.
@@ -182,7 +131,6 @@ The original large-scale data collection was performed in Google Colab. Subseque
 
 The data collection notebook has not been fully re-executed in the final local environment. Reproducing the project from scratch requires downloading and processing the original dataset.
 
----
 
 ## Tools and Libraries
 
